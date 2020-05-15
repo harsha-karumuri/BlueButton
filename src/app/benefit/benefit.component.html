@@ -1,0 +1,75 @@
+<br /><br /><br />
+<div *ngIf="benefitData">
+  <div class="container" *ngFor="let entry of benefitData.entry; let i = index">
+    <br />
+
+    <h2 class=".mat-h2 center-to-table">Benefit {{ i + 1 }}</h2>
+
+    <table class="table table-striped table-bordered table-container text-center">
+      <tbody>
+        <tr>
+          <th class="text-center">
+            Benefit ID
+          </th>
+          <td>
+            {{ entry.resource.id }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Benefit Status
+          </th>
+          <td>
+            {{ entry.resource.status }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Claim ID
+          </th>
+          <td>
+            {{ entry.resource.identifier[0].value }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Claim Group
+          </th>
+          <td>
+            {{ entry.resource.identifier[1].value }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Insurance Coverage
+          </th>
+          <td>
+            {{ entry.resource.insurance.coverage.reference }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Billable Period Start
+          </th>
+          <td>
+            {{ entry.resource.billablePeriod.start }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Billable Period End
+          </th>
+          <td>
+            {{ entry.resource.billablePeriod.end }}
+          </td>
+        </tr>
+        <tr>
+          <th class="text-center">
+            Amount
+          </th>
+          <td>{{ entry.resource.payment.amount.value }} &nbsp; {{ entry.resource.payment.amount.code }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<h3>Please login to Medicare to get the information!</h3>
+
+<a
+  type="button"
+  class="btn btn-primary btn-lg"
+  href="https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=GTjLQQG05ifg4FnMLEPNFRXysqIrFABDJlrqy2Hn&redirect_uri=http://localhost:4200&response_type=code&state=8e896a59f0744a8e93bf2f1f13230be5"
+  >Get Consent from Medicare</a
+>
+
+<br /><br /><br />
+
+<!-- <button type="button" class="btn btn-primary btn-lg" (click)="getBlueButton()">Get BlueButton</button> -->
+
+<div *ngIf="visible">
+  <br /><br />
+  <mat-tab-group>
+    <mat-tab label="Patient Details">
+      <app-patient-details></app-patient-details>
+    </mat-tab>
+
+    <mat-tab label="Coverage Data">
+      <app-coverage></app-coverage>
+    </mat-tab>
+
+    <mat-tab label="Benefit Explanation">
+      <app-benefit></app-benefit>
+    </mat-tab>
+  </mat-tab-group>
+</div>

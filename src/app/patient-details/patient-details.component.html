@@ -1,0 +1,38 @@
+<br /><br /><br />
+<div class="container">
+  <h2 class=".mat-h2 center-to-table">Patient Details</h2>
+  <table class="table table-striped table-bordered table-container text-center" *ngIf="patientData">
+    <tbody>
+      <tr>
+        <th class="text-center">
+          Patient ID
+        </th>
+        <td>
+          {{ patientData.id }}
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center">Last Name</th>
+        <td>{{ patientData.name[0].family }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Given Name</th>
+        <td>
+          <span *ngFor="let name of patientData.name[0].given">{{ name }}&nbsp;</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="text-center">Gender</th>
+        <td>{{ patientData.gender }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Birth Date</th>
+        <td>{{ patientData.birthDate }}</td>
+      </tr>
+      <tr>
+        <th class="text-center">Address</th>
+        <td>{{ patientData.address[0].district }}, &nbsp; {{ patientData.address[0].state }}, &nbsp;{{ patientData.address[0].postalCode }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
