@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,13 @@ export class AuthService {
 
   authData;
   makeVisible: boolean = true;
+  patientData;
+  patientDataSub = new BehaviorSubject<any>(this.patientData);
+  patientDataObs = this.patientDataSub.asObservable();
+
+  getPatient() {
+    return this.patientData;
+  }
 
   changeVisibility() {
     this.makeVisible = !this.makeVisible;

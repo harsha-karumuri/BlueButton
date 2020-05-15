@@ -11,10 +11,15 @@ export class PatientDetailsComponent implements OnInit {
 
   patientData;
   ngOnInit(): void {
-    this.authService.getPatientData().subscribe((data) => {
-      this.patientData = data;
-      console.log('patient data');
-      console.log(data);
-    });
+    // this.authService.getPatientData().subscribe((data) => {
+    //   this.patientData = data;
+    //   console.log('patient data');
+    //   console.log(data);
+    // });
+
+    // this.authService.patientDataSub.subscribe((data) => {
+    //   this.patientData = data;
+    // });
+    this.authService.patientDataSub.subscribe((data) => console.log(data));
   }
 }
