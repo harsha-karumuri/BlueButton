@@ -1,5 +1,5 @@
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-coverage',
@@ -9,12 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class CoverageComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
-  coverageData;
-  ngOnInit(): void {
-    this.authService.getCoverageData().subscribe((data) => {
-      this.coverageData = data;
-      console.log('coverage data');
-      console.log(data);
-    });
-  }
+  @Input() coverageData: any;
+  ngOnInit(): void {}
 }

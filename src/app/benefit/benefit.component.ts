@@ -1,5 +1,5 @@
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-benefit',
@@ -9,12 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class BenefitComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
-  benefitData;
-  ngOnInit(): void {
-    this.authService.getBenefitData().subscribe((data) => {
-      this.benefitData = data;
-      console.log('benefit data');
-      console.log(data);
-    });
-  }
+  @Input() benefitData: any;
+  ngOnInit(): void {}
 }

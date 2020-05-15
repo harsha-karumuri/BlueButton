@@ -11,19 +11,19 @@
 
 <!-- <button type="button" class="btn btn-primary btn-lg" (click)="getBlueButton()">Get BlueButton</button> -->
 
-<div *ngIf="visible">
+<div *ngIf="patientData || coverageData || benefitData">
   <br /><br />
   <mat-tab-group>
-    <mat-tab label="Patient Details">
-      <app-patient-details></app-patient-details>
+    <mat-tab label="Patient Details" *ngIf="patientData">
+      <app-patient-details [patientData]="patientData"></app-patient-details>
     </mat-tab>
 
-    <mat-tab label="Coverage Data">
-      <app-coverage></app-coverage>
+    <mat-tab label="Coverage Data" *ngIf="coverageData">
+      <app-coverage [coverageData]="coverageData"></app-coverage>
     </mat-tab>
 
-    <mat-tab label="Benefit Explanation">
-      <app-benefit></app-benefit>
+    <mat-tab label="Benefit Explanation" *ngIf="benefitData">
+      <app-benefit [benefitData]="benefitData"></app-benefit>
     </mat-tab>
   </mat-tab-group>
 </div>

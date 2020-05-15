@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +11,6 @@ export class AuthService {
 
   authData;
   makeVisible: boolean = true;
-  patientData;
-  patientDataSub = new BehaviorSubject<any>(this.patientData);
-  patientDataObs = this.patientDataSub.asObservable();
-
-  getPatient() {
-    return this.patientData;
-  }
 
   changeVisibility() {
     this.makeVisible = !this.makeVisible;
@@ -32,26 +25,18 @@ export class AuthService {
     params.set('code', localStorage.getItem('code'));
     params.set('state', localStorage.getItem('state'));
 
-    return this.http.post('https://sandbox.bluebutton.cms.gov/v1/o/token/?' + params.toString(), {
-      headers: new HttpHeaders().append('Content-Type', 'application/x-www-form-urlencoded'),
-    });
+    return this.http.post('https://sandbox.bluebutton.cms.gov/v1/o/token/?' + params.toString(), {});
   }
 
   getPatientData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Patient/-19990000001997`, {
-      headers: new HttpHeaders().append('Content-Type', 'application/json').append('Authorization', `Bearer ${localStorage.getItem('auth_token')}`),
-    });
+    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Patient/-19990000001997`);
   }
 
   getCoverageData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Coverage/?beneficiary=-19990000001997`, {
-      headers: new HttpHeaders().append('Content-Type', 'application/json').append('Authorization', `Bearer ${localStorage.getItem('auth_token')}`),
-    });
+    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Coverage/?beneficiary=-19990000001997`);
   }
 
   getBenefitData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/?patient=-19990000001997`, {
-      headers: new HttpHeaders().append('Content-Type', 'application/json').append('Authorization', `Bearer ${localStorage.getItem('auth_token')}`),
-    });
+    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/?patient=-19990000001997`);
   }
 }
