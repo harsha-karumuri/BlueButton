@@ -17,6 +17,10 @@
     <mat-tab label="Patient Details" *ngIf="patientData">
       <app-patient-details [patientData]="patientData"></app-patient-details>
     </mat-tab>
+    <mat-tab label="Patient Details" *ngIf="!patientData">
+      <br /><br />
+      <h2 class=".text-warning">You are not authorized to view the patient details!</h2>
+    </mat-tab>
 
     <mat-tab label="Coverage Data" *ngIf="coverageData">
       <app-coverage [coverageData]="coverageData"></app-coverage>

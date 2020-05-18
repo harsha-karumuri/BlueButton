@@ -24,7 +24,14 @@ export class HomeComponent implements OnInit {
           this.authService.authData = data;
           console.log('auth token: ' + this.authService.authData.access_token);
           localStorage.setItem('auth_token', this.authService.authData.access_token);
-          this.authService.getPatientData().subscribe((patientData) => (this.patientData = patientData));
+          this.authService.getPatientData().subscribe(
+            (patientData) => {
+              this.patientData = patientData;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
           this.authService.getCoverageData().subscribe((coverageData) => (this.coverageData = coverageData));
           this.authService.getBenefitData().subscribe((benefitData) => (this.benefitData = benefitData));
         });
