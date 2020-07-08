@@ -10,5 +10,7 @@ export class CoverageComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   @Input() coverageData: any;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.coverageData);
+  }
 }

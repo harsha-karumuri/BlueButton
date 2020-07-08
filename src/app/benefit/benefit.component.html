@@ -5,7 +5,9 @@
 
     <h2 class=".mat-h2 center-to-table">Benefit {{ i + 1 }}</h2>
 
-    <table class="table table-striped table-bordered table-container text-center">
+    <table
+      class="table table-striped table-bordered table-container text-center"
+    >
       <tbody>
         <tr>
           <th class="text-center">
@@ -67,7 +69,10 @@
           <th class="text-center">
             Amount
           </th>
-          <td>{{ entry.resource.payment.amount.value }} &nbsp; {{ entry.resource.payment.amount.code }}</td>
+          <td>
+            {{ entry.resource.payment.amount.value }} &nbsp;
+            {{ entry.resource.payment.amount.code }}
+          </td>
         </tr>
       </tbody>
     </table>

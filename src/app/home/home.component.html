@@ -1,33 +1,42 @@
-<h3>Please login to Medicare to get the information!</h3>
+<div class="container">
+  <div class="d-flex flex-row flex-direction: column">
+    <div>
+      <h3 class="p-2">Please login to Medicare to get the information!</h3>
+    </div>
+    <div>
+      <a
+        type="button"
+        class="btn btn-primary btn-lg p-2"
+        href="https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=GTjLQQG05ifg4FnMLEPNFRXysqIrFABDJlrqy2Hn&redirect_uri=http://localhost:4200&response_type=code&state=8e896a59f0744a8e93bf2f1f13230be5"
+        >Get Consent from Medicare</a
+      >
+    </div>
+  </div>
 
-<a
-  type="button"
-  class="btn btn-primary btn-lg"
-  href="https://sandbox.bluebutton.cms.gov/v1/o/authorize/?client_id=GTjLQQG05ifg4FnMLEPNFRXysqIrFABDJlrqy2Hn&redirect_uri=http://localhost:4200&response_type=code&state=8e896a59f0744a8e93bf2f1f13230be5"
-  >Get Consent from Medicare</a
->
+  <br /><br /><br />
 
-<br /><br /><br />
+  <!-- <button type="button" class="btn btn-primary btn-lg" (click)="getBlueButton()">Get BlueButton</button> -->
 
-<!-- <button type="button" class="btn btn-primary btn-lg" (click)="getBlueButton()">Get BlueButton</button> -->
+  <div *ngIf="patientData || coverageData || benefitData">
+    <br /><br />
+    <mat-tab-group>
+      <mat-tab label="Patient Details" *ngIf="patientData">
+        <app-patient-details [patientData]="patientData"></app-patient-details>
+      </mat-tab>
+      <mat-tab label="Patient Details" *ngIf="!patientData">
+        <br /><br />
+        <h2 class=".text-warning">
+          You are not authorized to view the patient details!
+        </h2>
+      </mat-tab>
 
-<div *ngIf="patientData || coverageData || benefitData">
-  <br /><br />
-  <mat-tab-group>
-    <mat-tab label="Patient Details" *ngIf="patientData">
-      <app-patient-details [patientData]="patientData"></app-patient-details>
-    </mat-tab>
-    <mat-tab label="Patient Details" *ngIf="!patientData">
-      <br /><br />
-      <h2 class=".text-warning">You are not authorized to view the patient details!</h2>
-    </mat-tab>
+      <mat-tab label="Coverage Data" *ngIf="coverageData">
+        <app-coverage [coverageData]="coverageData"></app-coverage>
+      </mat-tab>
 
-    <mat-tab label="Coverage Data" *ngIf="coverageData">
-      <app-coverage [coverageData]="coverageData"></app-coverage>
-    </mat-tab>
-
-    <mat-tab label="Benefit Explanation" *ngIf="benefitData">
-      <app-benefit [benefitData]="benefitData"></app-benefit>
-    </mat-tab>
-  </mat-tab-group>
+      <mat-tab label="Benefit Explanation" *ngIf="benefitData">
+        <app-benefit [benefitData]="benefitData"></app-benefit>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

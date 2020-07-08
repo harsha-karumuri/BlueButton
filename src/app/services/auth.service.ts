@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
@@ -17,26 +16,32 @@ export class AuthService {
   }
 
   getAuthTokenData() {
-    let params = new URLSearchParams();
-    params.set('grant_type', 'authorization_code');
-    params.set('redirect_uri', 'http://localhost:4200');
-    params.set('client_id', 'GTjLQQG05ifg4FnMLEPNFRXysqIrFABDJlrqy2Hn');
-    params.set('client_secret', 'aYMXdCkRcDQsQOuMF4mUhtLSvmnxjXhwAkXOc6hjcyu0RqfEybovOrWfoDCqi3xCo8iVkS9XigAQcUWmtzOHf2KFwYxOKOuuIMv5mIi0OS9sNGiu7suPcP7G05deGQSv');
-    params.set('code', localStorage.getItem('code'));
-    params.set('state', localStorage.getItem('state'));
+    return this.http.post(`http://localhost:3000/getAuth`, {
+      headers: new HttpHeaders().append("Content-Type", "application/json"),
+    });
+  }
 
-    return this.http.post('https://sandbox.bluebutton.cms.gov/v1/o/token/?' + params.toString(), {});
+  getRefreshedAuthToken() {
+    return this.http.post(`http://localhost:3000/getRefreshedAuth`, {
+      headers: new HttpHeaders().append("Content-Type", "application/json"),
+    });
   }
 
   getPatientData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Patient/-19990000001997`);
+    return this.http.get(`http://localhost:3000/getPatientData`, {
+      headers: new HttpHeaders().append("Content-Type", "application/json"),
+    });
   }
 
   getCoverageData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/Coverage/?beneficiary=-19990000001997`);
+    return this.http.get(`http://localhost:3000/getCoverageData`, {
+      headers: new HttpHeaders().append("Content-Type", "application/json"),
+    });
   }
 
   getBenefitData() {
-    return this.http.get(`https://sandbox.bluebutton.cms.gov/v1/fhir/ExplanationOfBenefit/?patient=-19990000001997`);
+    return this.http.get(`http://localhost:3000/getBenefitData`, {
+      headers: new HttpHeaders().append("Content-Type", "application/json"),
+    });
   }
 }

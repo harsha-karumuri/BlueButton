@@ -10,5 +10,7 @@ export class BenefitComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   @Input() benefitData: any;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.benefitData);
+  }
 }

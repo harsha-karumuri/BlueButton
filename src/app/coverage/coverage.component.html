@@ -1,11 +1,16 @@
 <br /><br /><br />
 <div *ngIf="coverageData">
-  <div class="container" *ngFor="let entry of coverageData.entry; let i = index">
+  <div
+    class="container"
+    *ngFor="let entry of coverageData.entry; let i = index"
+  >
     <br />
 
     <h2 class=".mat-h2 center-to-table">Coverage {{ i + 1 }}</h2>
 
-    <table class="table table-striped table-bordered table-container text-center">
+    <table
+      class="table table-striped table-bordered table-container text-center"
+    >
       <tbody>
         <tr>
           <th class="text-center">
